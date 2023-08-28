@@ -19,6 +19,7 @@ class MongoCDriverConan(ConanFile):
     url = "https://github.com/conan-io/conan-center-index"
     homepage = "https://mongoc.org/"
     topics = ("libbson", "libmongoc", "mongo", "mongodb", "database", "db")
+    version = "1.24.3"
 
     package_type = "library"
     settings = "os", "arch", "compiler", "build_type"
@@ -116,6 +117,7 @@ class MongoCDriverConan(ConanFile):
         tc = CMakeToolchain(self)
         # All these variables are option() declared before project() in upstream CMakeLists
         # therefore it defeats conan_toolchain variables, but it works fine with cache_variables
+        tc.cache_variables["BUILD_VERSION"] = self.version
         tc.cache_variables["ENABLE_SSL"] = self._ssl_cmake_value
         tc.cache_variables["ENABLE_SASL"] = self._sasl_cmake_value
         tc.cache_variables["ENABLE_STATIC"] = "OFF" if self.options.shared else "ON"

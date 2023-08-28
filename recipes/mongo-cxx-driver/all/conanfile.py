@@ -19,6 +19,7 @@ class MongoCxxConan(ConanFile):
     topics = ("libbsoncxx", "libmongocxx", "mongo", "mongodb", "database", "db")
     package_type = "library"
     settings = "os", "arch", "compiler", "build_type"
+    version = "3.9.0"
     options = {
         "shared": [True, False],
         "fPIC": [True, False],
@@ -122,6 +123,7 @@ class MongoCxxConan(ConanFile):
         tc.variables["BSONCXX_POLY_USE_STD"] = self.options.polyfill == "std"
         tc.variables["BSONCXX_POLY_USE_STD_EXPERIMENTAL"] = self.options.polyfill == "experimental"
         tc.variables["BSONCXX_POLY_USE_BOOST"] = self.options.polyfill == "boost"
+        tc.variables["MONGO_INSTALL_AT_TOP_LEVEL"] = "ON"
         tc.cache_variables["BUILD_VERSION"] = self.version
         tc.cache_variables["BSONCXX_LINK_WITH_STATIC_MONGOC"] = "OFF" if self.dependencies["mongo-c-driver"].options.shared else "ON"
         tc.cache_variables["MONGOCXX_LINK_WITH_STATIC_MONGOC"] = "OFF" if self.dependencies["mongo-c-driver"].options.shared else "ON"
