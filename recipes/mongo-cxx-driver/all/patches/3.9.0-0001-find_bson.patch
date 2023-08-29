@@ -1,0 +1,13 @@
+diff --git a/src/bsoncxx/CMakeLists.txt b/src/bsoncxx/CMakeLists.txt
+index cc02c30b..5c5a1458 100644
+--- a/src/bsoncxx/CMakeLists.txt
++++ b/src/bsoncxx/CMakeLists.txt
+@@ -105,7 +105,7 @@ if(TARGET bson_shared OR TARGET bson_static)
+   endif()
+ else()
+   # Attempt to find libbson by new package name (without lib).
+-  find_package(bson-${LIBBSON_REQUIRED_ABI_VERSION} ${LIBBSON_REQUIRED_VERSION} QUIET)
++  find_package(bson-${LIBBSON_REQUIRED_ABI_VERSION} REQUIRED)
+ 
+   if(bson-${LIBBSON_REQUIRED_ABI_VERSION}_FOUND)
+     message ("found libbson version ${bson-${LIBBSON_REQUIRED_ABI_VERSION}_VERSION}")
